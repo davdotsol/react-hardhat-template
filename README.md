@@ -7,17 +7,14 @@ This project serves as a template for starting new Web3 projects quickly using R
 ## Features
 
 - Integration of ReactJS for building dynamic user interfaces.
-- Seamless integration with Web3 for interacting with blockchain networks.
-- Testing setup using @testing-library for writing unit tests.
-- ESlint configuration for maintaining code quality and consistency.
-- Development and production build scripts for easy deployment.
-- Support for modern browsers with Browserlist configuration.
+- Seamless integration with Web3 (Hardhat, ethers) for interacting with blockchain networks.
+- Testing setup using Mocha and Chai for writing unit tests.
 
 ## Prerequisites
 
 Before getting started, ensure you have the following installed on your machine:
 
-- Node.js and npm - Download & Install Node.js
+- Node.js and npm - [Download & Install Node.js](https://nodejs.org/)
 
 ## Installation
 
@@ -26,13 +23,13 @@ Follow these steps to set up the project locally:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/web3-react-template.git
+git clone https://github.com/your-username/react-hardhat-template.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd web3-react-template
+cd react-hardhat-template
 ```
 
 3. Install dependencies:
@@ -51,19 +48,62 @@ npm start
 
 This will launch the project in your default web browser. You can view the application at **\`http://localhost:3000\`**.
 
-To build the production-ready bundle, use:
+## Smart Contract Development
+
+### Compiling Contracts
+
+To compile the Solidity contracts, run:
 
 ```bash
-npm run build
+npx hardhat compile
 ```
 
-The optimized build will be located in the **\`build\`** directory.
+### Deploying Contracts
 
-Testing
-To run tests, execute:
+To deploy the contracts to a local blockchain, run:
 
 ```bash
-npm test
+npx hardhat node
 ```
 
-This will launch the test runner in the interactive watch mode.
+In a separate terminal, run:
+
+```bash
+npx hardhat ignition deploy ./ignition/modules/Token.js --network localhost
+```
+
+### Running Tests
+
+To run tests for the Solidity contracts, execute:
+
+```bash
+npx hardhat test
+```
+
+## Project Structure
+
+Here's an overview of the project structure:
+
+```plaintext
+react-hardhat-template/
+├── contracts/
+│   └── Token.sol       # Solidity smart contract
+├── ignition/modules/
+│   └── Token.js        # Script for deploying contracts
+├── src/
+│   ├── components/     # React components
+│   ├── abis/           # Smart contracts abi
+│   ├── App.js          # Main React component
+│   ├── config.js       # Smart contract addresses
+│   └── index.js        # Entry point for React
+├── test/
+│   └── Token.js        # Tests for Solidity contract
+├── package.json        # Project configuration and scripts
+├── hardhat.config.js   # Hardhat configuration
+├── tailwind.config.js
+└── README.md           # Project documentation
+```
+
+### License
+
+This project is unlicensed
